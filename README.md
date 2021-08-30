@@ -1,5 +1,9 @@
 # Boomi - Continuous Deployment
 
+![GitHub](https://img.shields.io/github/license/jfdaniel77/boomi-cd)
+![GitHub last commit](https://img.shields.io/github/last-commit/jfdaniel77/boomi-cd)
+![GitHub repo size](https://img.shields.io/github/repo-size/jfdaniel77/boomi-cd)
+
 [Boomi](https://boomi.com) is an integration solution (iPaaS) to easily integrate applications, partners, and customers via the web with a visual designer and a number of pre-configured components. Boomi has a number of exciting functions and tools to create and maintain integration between two or more end-points.
 
 Boomi Integration is ran on Boomi AtomSphere Platform. Boomi AtomSphere Platform has a homepage to easily manageing processes, models, APIs, etc. It also provides programmatic access (Boomi AtomSphere API) to functionality that is normally accessed through the Boomi AtomSphere platform.
@@ -82,7 +86,7 @@ We can use any tools that can send HTTP Request such as `curl`, [Postman](https:
 
 ### Deploy components
 
-This is payload that is required for component deployment.
+This is payload that is required for component deployment. We put this payload in HTTP Request body.
 
 ```json
 {
@@ -127,7 +131,11 @@ This is response after the job has been passed successfully to queue system.
 
 ### Get result status
 
-To get result status, we need to pass token from previous request and put it in query path.
+To get result status, we need to pass token from previous request and put it in query path. For example:
+
+```
+{base_url}/release/bf335869-be41-4d2a-a028-94c441ac0678
+```
 
 This is a response when deployment process is still in-progress.
 
