@@ -28,7 +28,7 @@ functions:
     timeout: 10 # optional, in seconds, default is 6
     events:
       - http:
-          path: /component
+          path: /release
           method: post
           private: true
     
@@ -39,7 +39,7 @@ functions:
     timeout: 10 # optional, in seconds, default is 6
     events:
       - http:
-          path: /component/{token}
+          path: /release/{token}
           method: get
           private: true
     
