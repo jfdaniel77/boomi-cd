@@ -205,3 +205,5 @@ This is response after deployment process has been done.
     We can enhance it to have capabilities to deploy particular component.
 
 -   It will be good to provide interactive front end so that user can monitor and get real time status for individual component being deployed.
+
+-   To support other components to be deployed such as API component.
