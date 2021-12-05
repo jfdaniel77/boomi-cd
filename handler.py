@@ -147,9 +147,12 @@ def process_deployment(event, context):
     list_component = populate_component(projects)
     
     # Get Package ID for all components
+    # list_component = populate_packageId(env_source, list_component)
     populate_packageId(env_source, list_component)
     
     # Deploy package to destination environment
+    # list_component = deploy_package(env_destination, list_component, notes)
+    print("Number of component in list = {}".format(len(list_component)))
     deploy_package(env_destination, list_component, notes)
     
     # Create a new record in DynamoDB
@@ -182,7 +185,7 @@ def deploy_package(env_destination, list_component, notes):
     now = datetime.now()
     dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
     notes = "{} - {} ".format(dt_string, notes)
-    
+    print("Number of component to be deployed = {}".format(len(list_component)))
     for item in list_component:
         
         id = item.get("packageId")
@@ -192,6 +195,7 @@ def deploy_package(env_destination, list_component, notes):
                     "packageId" : id,
                     "notes" : notes
                 }
+        print("{} to {} :: payload: {}".format(name, env_destination, payload))
     
         response = requests.post(boomi_deploy_package_endpoint, 
                              headers=headers, 
@@ -200,14 +204,14 @@ def deploy_package(env_destination, list_component, notes):
         
         if response.status_code == 200:
             item["status"] = "DEPLOYED"
-            
+            print("{} :: Id: {} is DEPLOYED.".format(name, id))
         elif response.status_code == 400:
             item["status"] = "EXISTING"
-            
+            print("{} :: Id: {} is use existing.".format(name, id))
         else:
             item["status"] = "ERROR"
             item["errorMessage"] = response.text
-            
+            print("{} :: Id: {} encounter error {}.".format(name, id, response.text))
             
         time.sleep(1)
             
@@ -270,6 +274,7 @@ def populate_packageId(env_source, list_component):
             
         time.sleep(1)
             
+    # return list_component
     
 def populate_component(projects):
     list_component = []
