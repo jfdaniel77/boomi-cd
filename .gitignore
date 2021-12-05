@@ -16,7 +16,10 @@ var/
 .installed.cfg
 *.egg
 venv/
-.env
 
-# Serverless directories
+# Serverless specific files/directories
 .serverless
+serverless.yml
+scripts/
+.env
+node_modules/
