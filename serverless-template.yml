@@ -50,3 +50,8 @@ functions:
     timeout: 600 # optional, in seconds, default is 6
     events:
       - sqs: [Amazon SQS ARN]
+
+package:
+  patterns:
+    - '!node_modules/**'
+    - '!venv/**'
